@@ -13,9 +13,40 @@ const server: Server = http.createServer(
                 })
             )
         }
+        //health route
+        if (req.url == '/api' && req.method == "GET") {
+            res.writeHead(200, { "appalication/json": "apalication/json" });
+            res.end(
+                JSON.stringify({
+                    messege: "health status ok",
+                    path: req.url
+                })
+            )
+        }
+        if (req.url == "/api/users" && req.method == "POST") {
+            // const user={
+            //     id:1,
+            //     name:"alice"
+            // }
+            //  res.writeHead(200, { "appalication/json": "apalication/json" });
+            // res.end(
+            //     JSON.stringify(user)
+            // )
+            let body = "";
+
+            //listen for data chunk
+            req.on("data", chunk => {
+                body += chunk.toSting();
+            })
+            req.on("end", () => {
+                const parsBody = JSON.parse(body);
+                console.log(body);
+                res.end(body)
+            });
+        }
     }
 )
 
-server.listen(config.port , () => {
-    console.log(`server is running on port ${config.port}`);
+server.listen(5000, () => {
+    console.log(`server is running on port ${5000}`);
 })
