@@ -39,9 +39,15 @@ const server: Server = http.createServer(
                 body += chunk.toSting();
             })
             req.on("end", () => {
-                const parsBody = JSON.parse(body);
-                console.log(body);
-                res.end(body)
+             try{
+                   const parsBody = JSON.parse(body);
+                console.log(parsBody);
+                console.log('catching current changes');
+                res.end(JSON.stringify(parsBody))
+                // res.end(body)
+             }catch(err:any){
+                console.log(err?.messege);
+             }
             });
         }
     }
