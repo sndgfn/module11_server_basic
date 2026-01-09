@@ -1,4 +1,5 @@
 import http, { IncomingMessage, Server, ServerResponse } from "http";
+import config from "./config"
 
 const server: Server = http.createServer(
     (req: IncomingMessage, res: ServerResponse) => {
