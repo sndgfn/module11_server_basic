@@ -40,6 +40,34 @@ console.log(d1.name);   // Tommy
 console.log(d1.breed);  // German Shepherd
 
 
+
+//default constructor
+class Person {
+  name: string;
+
+  constructor() {
+    this.name = "Unknown";
+  }
+}
+
+const p1 = new Person();
+
+console.log(p1.name); // Unknownclass Car {
+  brand: string;
+  price: number;
+
+  constructor() {
+    this.brand = "Toyota";
+    this.price = 10000;
+  }
+}
+
+const car1 = new Car();
+
+console.log(car1.brand); // Toyota
+console.log(car1.price); // 10000
+
+
 // ===============================
 // ✅ FINAL IDEA (Quick Recap)
 // ===============================
