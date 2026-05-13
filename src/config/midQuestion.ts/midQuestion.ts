@@ -1,102 +1,30 @@
-// ===============================
-// Q1: Vehicle Dynamic Dispatch
-// ===============================
-class Vehicle {
-    start(): void {
-        console.log("Vehicle is starting...");
+type Shape = 
+    | { kind: "circle"; radius: number }
+    | { kind: "rectangle"; width: number; height: number };
+
+function drawShape(shape: Shape) {
+    switch (shape.kind) {
+        case "circle":
+            console.log(`Drawing a Circle with radius ${shape.radius}`);
+            break;
+        case "rectangle":
+            console.log(`Drawing a Rectangle (${shape.width}x${shape.height})`);
+            break;
+    }
+}enum EmployeeType {
+    FullTime = 50000,
+    PartTime = 20000,
+    Contractor = 30000
+}
+
+class Employee {
+    constructor(public name: string, private type: EmployeeType) {}
+
+    getSalary(): number {
+        return this.type;
     }
 }
 
-class Car extends Vehicle {
-    override start(): void {
-        console.log("Car starts with a key.");
-    }
-}
-
-class Bike extends Vehicle {
-    override start(): void {
-        console.log("Bike starts with a self button.");
-    }
-}
-
-// ===============================
-// Q2: Animal Sounds
-// ===============================
-class Animal {
-    makeSound(): void {
-        console.log("Animal makes a sound");
-    }
-}
-
-class Dog extends Animal {
-    override makeSound(): void {
-        console.log("Dog says: Woof Woof");
-    }
-}
-
-class Cat extends Animal {
-    override makeSound(): void {
-        console.log("Cat says: Meow Meow");
-    }
-}
-
-// ===============================
-// Q3: Payment System
-// ===============================
-class Payment {
-    pay(): void {
-        console.log("Processing payment...");
-    }
-}
-
-class CreditCardPayment extends Payment {
-    override pay(): void {
-        console.log("Payment made using Credit Card.");
-    }
-}
-
-class PayPalPayment extends Payment {
-    override pay(): void {
-        console.log("Payment made using PayPal.");
-    }
-}
-
-// ===============================
-// Q4: Abstract Shape
-// ===============================
-abstract class ShapeBase {
-    abstract draw(): void;
-}
-
-class BasicCircle extends ShapeBase {
-    draw(): void {
-        console.log("Drawing a Circle");
-    }
-}
-
-class BasicRectangle extends ShapeBase {
-    draw(): void {
-        console.log("Drawing a Rectangle");
-    }
-}
-
-// ===============================
-// Q5: Employee Salary
-// ===============================
-class SimpleEmployee {
-    calculateSalary(): number {
-        return 0;
-    }
-}
-
-class FullTimeStaff extends SimpleEmployee {
-    override calculateSalary(): number {
-        return 50000;
-    }
-}
-
-class PartTimeStaff extends SimpleEmployee {
-    override calculateSalary(): number {
-        return 20000;
-    }
-}
+// Usage
+const emp1 = new Employee("Alice", EmployeeType.FullTime);
+console.log(`${emp1.name} earns ${emp1.getSalary()}`);
